@@ -1,0 +1,17 @@
+-- 1. Order the items by price (from lowest to highest)
+SELECT * FROM superstore
+ORDER BY price;
+
+-- 2. Calculate and display the average price of all items in the superstore
+SELECT AVG(price) AS average_price
+FROM superstore;
+
+-- 3. Find and display the maximum price for items in the "Kitchen Supplies" category
+SELECT MAX(price) AS max_kitchen_supplies_price
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+-- 4. Count and display how many items have an average rating of 4.5 or higher
+SELECT COUNT(*) AS high_rated_items_count
+FROM superstore
+WHERE average_rating >= 4.5;
