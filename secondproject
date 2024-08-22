@@ -1,0 +1,10 @@
+SELECT revenue, company_name, industry
+CASE WHEN revenue < 200 THEN "Low Revenue" 
+WHEN  200 <  revenue <  400 THEN  "Medium Revenue" 
+WHEN revenue > 400 THEN "High Revenue"
+ELSE "NO REVENUE CAPTURED"
+END AS REVENUE_STATUS
+FROM fortune_companies
+GROUP BY revenue;
+
+Query Error: Error: SQLITE_ERROR: near "CASE": syntax error
