@@ -1,14 +1,22 @@
+-- Select the revenue category, count of companies, and average employee tenure
 SELECT 
-    revenue, 
-    company_name, 
-    industry,
+    -- Categorize revenue into 'Low Revenue', 'Medium Revenue', or 'High Revenue'
     CASE 
         WHEN revenue < 200 THEN 'Low Revenue'
-        WHEN revenue >= 200 AND revenue < 400 THEN 'Medium Revenue'
-        WHEN revenue >= 400 THEN 'High Revenue'
-        ELSE 'NO REVENUE CAPTURED'
-    END AS REVENUE_STATUS
-FROM 
-    fortune_companies;
+        WHEN revenue >= 200 AND revenue <= 400 THEN 'Medium Revenue'
+        WHEN revenue > 400 THEN 'High Revenue'
+    END AS Revenue_Category,  -- Assigns the result of the CASE statement to the alias 'Revenue_Category'
 
-Query Error: Error: SQLITE_ERROR: near "CASE": syntax error
+    -- Count the number of companies in each revenue category
+    COUNT(*) AS Company_Count,  -- Counts all rows within each group, i.e., the number of companies per category
+
+    -- Calculate the average employee tenure for each revenue category
+    AVG(avg_employee_tenure) AS Avg_Employee_Tenure  -- Computes the average of 'avg_employee_tenure' within each group
+
+-- Specify the table to query
+FROM 
+    fortune_companies
+
+-- Group results by the revenue category
+GROUP BY 
+    Revenue_Category;  -- Groups the results based on the calculated 'Revenue_Category'
